@@ -15,10 +15,10 @@ REM ログファイル配置ディレクトリ
 set log_dir=%root_dir%\log\
 
 REM YYYYMMDD
-set now=%date:~0,4%%date:~5,2%%date:~8,2%
+set today=%date:~0,4%%date:~5,2%%date:~8,2%
 
 REM ログファイル
-set log_filename=prac0001_%now%.log
+set log_filename=prac0001_%today%.log
 
 REM 作業ディレクトリ
 set work_dir=%root_dir%\work\
