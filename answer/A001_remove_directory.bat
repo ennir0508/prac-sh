@@ -9,7 +9,7 @@ REM ========================================
 REM 変数定義
 @REM ~dp0 ... カレントディレクトリ
 @REM 参考: https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/call#batch-parameters 
-set root_dir=%~dp0
+set root_dir=%~dp0\..\
 
 REM ログファイル配置ディレクトリ
 set log_dir=%root_dir%\log\
@@ -78,15 +78,15 @@ REM ログ出力
 :log
   @REM date 日付コマンド(YYYY/MM/DD)
   @REM time 時刻コマンド(hh:mm:ss)
-  echo [%date% %time%]:[INFO] %~1 >> %log_dir%\%log_filename%
+  echo [%date% %time%]: %~nx0 [INFO] %~1 >> %log_dir%\%log_filename%
 exit /b 
 
 REM 警告出力 
 :warn
-  echo [%date% %time%]:[WARN] %~1 >> %log_dir%\%log_filename%
+  echo [%date% %time%]: %~nx0 [WARN] %~1 >> %log_dir%\%log_filename%
 exit /b 
 
 REM エラー出力 
 :error
-  echo [%date% %time%]:[ERROR] %~1 >> %log_dir%\%log_filename%
+  echo [%date% %time%]: %~nx0 [ERROR] %~1 >> %log_dir%\%log_filename%
 exit /b 
