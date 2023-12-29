@@ -8,8 +8,8 @@ REM ========================================
 
 REM 変数定義
 @REM ~dp0 ... カレントディレクトリ
-@REM 参考: https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/call#batch-parameters 
-set root_dir=%~dp0\
+@REM 参考: https://learn.microsoft.com/ja-jp/windows-server/administration/windows-commands/call#batch-parameters
+set root_dir=%~dp0
 
 REM ログファイル配置ディレクトリ
 set log_dir=%root_dir%\log\
@@ -18,7 +18,7 @@ REM YYYYMMDD
 set today=%date:~0,4%%date:~5,2%%date:~8,2%
 
 REM ログファイル
-set log_filename=prac0001_%today%.log
+set log_filename=%today%.log
 
 REM 作業ディレクトリ
 set work_dir=%root_dir%\work\
@@ -48,7 +48,7 @@ if not exist %test_dir% (
 ) else (
     REM testディレクトリが存在する場合、削除する
     call :warn "The test folder already exists."
-    
+
     @REM rmdir ... ディレクトリ削除
     @REM    /s ... 再帰的に削除する
     @REM    /q ... 確認メッセージを表示しない
@@ -74,19 +74,19 @@ REM サブルーチン定義
 @REM
 @REM 参考: https://itsakura.com/windows-bat-kansuu
 
-REM ログ出力 
+REM ログ出力
 :log
   @REM date 日付コマンド(YYYY/MM/DD)
   @REM time 時刻コマンド(hh:mm:ss)
   echo [%date% %time%]: %~nx0 [INFO] %~1 >> %log_dir%\%log_filename%
-exit /b 
+exit /b
 
-REM 警告出力 
+REM 警告出力
 :warn
   echo [%date% %time%]: %~nx0 [WARN] %~1 >> %log_dir%\%log_filename%
-exit /b 
+exit /b
 
-REM エラー出力 
+REM エラー出力
 :error
   echo [%date% %time%]: %~nx0 [ERROR] %~1 >> %log_dir%\%log_filename%
-exit /b 
+exit /b
